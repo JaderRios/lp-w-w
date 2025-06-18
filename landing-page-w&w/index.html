@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Clínica Veterinaria 24 horas - Whoof & Whiskers" />
+    <title>Whoof & Whiskers</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+    <!-- FRAMEWORK DE CSS : Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              poppins: ['Poppins', 'sans-serif']
+            }
+          }
+        }
+      };
+    </script>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Libreria de animaciones  -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
+  </head>
+
+  <body class="bg-gray-50 font-poppins text-gray-700">
+    <!-- Header -->
+    <header class="fixed w-full z-20 top-0 bg-white shadow-md py-2">
+      <div class="max-w-7xl mx-auto px-6 sm:px-10 flex justify-between items-center">
+        <a href="#hero">
+          <img src="img/header_logo.png" alt="Logo Whoof & Whiskers" class="h-14 sm:h-16 w-auto" />
+        </a>
+
+        <!-- Botón menú móvil -->
+        <button
+          id="menu-btn"
+          aria-label="Abrir menú"
+          class="sm:hidden focus:outline-none focus:ring-2 focus:ring-yellow-500"
+          onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
+        >
+          <svg
+            class="w-8 h-8 text-yellow-700"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+
+        <!-- Menú navegación desktop -->
+        <nav class="hidden sm:block">
+          <ul class="flex space-x-10 font-semibold text-lg text-gray-700">
+            <li><a href="#hero" class="hover:text-yellow-600 transition duration-300">Inicio</a></li>
+            <li>
+              <a href="#nuestro-trabajo" class="hover:text-yellow-600 transition duration-300">Nuestro Trabajo</a>
+            </li>
+            <li><a href="#servicios" class="hover:text-yellow-600 transition duration-300">Servicios</a></li>
+            <li><a href="#contacto" class="hover:text-yellow-600 transition duration-300">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Menú móvil desplegable -->
+      <nav id="mobile-menu" class="sm:hidden hidden bg-white border-t border-gray-200">
+        <ul class="flex flex-col space-y-4 p-6 font-semibold text-lg text-gray-700">
+          <li><a href="#hero" class="hover:text-yellow-600 transition duration-300 block">Inicio</a></li>
+          <li>
+            <a href="#nuestro-trabajo" class="hover:text-yellow-600 transition duration-300 block">Nuestro Trabajo</a>
+          </li>
+          <li><a href="#servicios" class="hover:text-yellow-600 transition duration-300 block">Servicios</a></li>
+          <li><a href="#contacto" class="hover:text-yellow-600 transition duration-300 block">Contacto</a></li>
+        </ul>
+      </nav>
+    </header>
+    <!-- Hero Seccion -->
+    <section
+      id="hero"
+      class="h-screen flex items-center justify-center bg-cover bg-center relative text-white text-center"
+      style="background-image: url('img/hero.jpg')"
+    >
+      <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+      <div class="relative z-10 animate-fadeIn">
+        <h1 class="text-5xl sm:text-6xl font-bold mb-4">Clínica Veterinaria 24 horas</h1>
+        <p class="text-xl mb-6 text-200">¿Necesitas ayuda?</p>
+        <a
+          href="#contacto"
+          class="bg-yellow-500 hover:bg-yellow-600 text-white text-xl py-4 px-10 rounded-full shadow-lg transition transform hover:scale-105"
+          >Agenda tu cita</a
+        >
+      </div>
+    </section>
+
+    <!-- Servicios -->
+    <section data-aos="fade-right" data-aos-duration="2000" id="servicios" class="py-24 bg-gray-100">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <h2 class="text-4xl font-bold text-gray-800 mb-4">Nuestros Servicios</h2>
+        <p class="mb-8">
+          Consultas, vacunaciones, cirugías, imágenes, urgencias, desparasitación, nutrición y estética.
+        </p>
+        <hr class="w-24 h-1 bg-yellow-500 mx-auto mb-10" />
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div
+            onclick="abrirModalServicio('Consultas Generales', 'Evaluamos la salud general de tu mascota, resolvemos dudas y brindamos tratamiento oportuno.', 'S/ 50')"
+            class="p-4 bg-white rounded shadow hover:shadow-md transition transform hover:-translate-y-1 cursor-pointer"
+          >
+            <i class="fas fa-clinic-medical fa-3x text-yellow-500 mb-4"></i>
+            <h4 class="text-xl font-semibold mb-2">Consultas</h4>
+            <p>Atención médica integral para tu mascota.</p>
+          </div>
+
+          <div
+            onclick="abrirModalServicio('Vacunación', 'Aplicamos vacunas esenciales para prevenir enfermedades comunes como rabia, moquillo y parvovirus.', 'S/ 70 por vacuna')"
+            class="p-4 bg-white rounded shadow hover:shadow-md transition transform hover:-translate-y-1 cursor-pointer"
+          >
+            <i class="fas fa-syringe fa-3x text-yellow-500 mb-4"></i>
+            <h4 class="text-xl font-semibold mb-2">Vacunación</h4>
+            <p>Protege a tu mascota con su calendario al día.</p>
+          </div>
+
+          <div
+            onclick="abrirModalServicio('Cirugías', 'Realizamos cirugías generales y especializadas con protocolos de anestesia segura y recuperación monitorizada.', 'Desde S/ 300 según procedimiento')"
+            class="p-4 bg-white rounded shadow hover:shadow-md transition transform hover:-translate-y-1 cursor-pointer"
+          >
+            <i class="fas fa-stethoscope fa-3x text-yellow-500 mb-4"></i>
+            <h4 class="text-xl font-semibold mb-2">Cirugías</h4>
+            <p>Desde esterilizaciones hasta procedimientos complejos.</p>
+          </div>
+
+          <div
+            onclick="abrirModalServicio('Imágenes Diagnósticas', 'Contamos con ecografías y rayos X para un diagnóstico preciso y rápido.', 'S/ 100 - S/ 200 según estudio')"
+            class="p-4 bg-white rounded shadow hover:shadow-md transition transform hover:-translate-y-1 cursor-pointer"
+          >
+            <i class="fas fa-x-ray fa-3x text-yellow-500 mb-4"></i>
+            <h4 class="text-xl font-semibold mb-2">Imágenes</h4>
+            <p>Diagnóstico por imagen de alta calidad.</p>
+          </div>
+
+          <div
+            onclick="abrirModalServicio('Urgencias', 'Atendemos emergencias con rapidez y eficiencia para estabilizar a tu mascota en momentos críticos.', 'Tarifa fija S/ 150 + costos adicionales')"
+            class="p-4 bg-white rounded shadow hover:shadow-md transition transform hover:-translate-y-1 cursor-pointer"
+          >
+            <i class="fas fa-ambulance fa-3x text-yellow-500 mb-4"></i>
+            <h4 class="text-xl font-semibold mb-2">Urgencias</h4>
+            <p>Disponibles cuando más lo necesitas.</p>
+          </div>
+
+          <div
+            onclick="abrirModalServicio('Estética y Baños', 'Servicios de grooming, corte de uñas, limpieza de oídos y baños medicados.', 'Desde S/ 60 según servicio')"
+            class="p-4 bg-white rounded shadow hover:shadow-md transition transform hover:-translate-y-1 cursor-pointer"
+          >
+            <i class="fas fa-cut fa-3x text-yellow-500 mb-4"></i>
+            <h4 class="text-xl font-semibold mb-2">Estética</h4>
+            <p>Tu mascota limpia, feliz y con estilo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nuestro-trabajo -->
+    <section data-aos="fade-left" data-aos-duration="2000" id="nuestro-trabajo" class="py-24 bg-white">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <h2 class="text-4xl font-bold text-gray-800 mb-4">Nuestro Trabajo</h2>
+        <p class="mb-8">
+          Amamos a los animales tanto como tú. Somos un equipo comprometido con la salud y felicidad de tus mascotas.
+        </p>
+        <hr class="w-24 h-1 bg-yellow-500 mx-auto mb-10" />
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div
+            onclick="abrirModal('img/gato1.jpeg', 'Milo fue rescatado con signos de desnutrición. En nuestra veterinaria recibió atención especializada, una dieta adecuada y cariño. Hoy está saludable y más juguetón que nunca.')"
+            class="h-64 bg-cover bg-center rounded-lg shadow-lg transform transition hover:scale-105"
+            style="background-image: url('img/gato1.jpeg')"
+          ></div>
+
+          <div
+            onclick="abrirModal('img/perro1.jpeg', 'Luna llegó con una fractura en la pata trasera. Gracias a nuestro equipo quirúrgico y terapias de rehabilitación, ahora corre feliz junto a su familia humana.')"
+            class="h-64 sm:row-span-2 bg-cover bg-center rounded-lg shadow-lg transform transition hover:scale-105"
+            style="background-image: url('img/perro1.jpeg')"
+          ></div>
+
+          <div
+            onclick="abrirModal('img/gato4.jpeg', 'Simba fue atendido por una infección ocular severa. Con tratamiento oportuno y revisiones periódicas, su recuperación fue total. Hoy disfruta de una vista perfecta y una vida plena.')"
+            class="h-64 bg-cover bg-center rounded-lg shadow-lg transform transition hover:scale-105"
+            style="background-image: url('img/gato4.jpeg')"
+          ></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact (animación nueva aquí) -->
+    <section data-aos="fade-left" data-aos-duration="2000" id="contacto" class="py-24 bg-yellow-100 animate-zoomIn">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <h2 class="text-4xl font-bold text-gray-800 mb-4">Contáctanos</h2>
+        <p class="mb-6">¿Deseas ser solicitar atención de Whoof & Whiskers? Escríbenos.</p>
+        <hr class="w-24 h-1 bg-yellow-500 mx-auto mb-10" />
+        <form class="grid gap-4 max-w-xl mx-auto" onsubmit="enviarWhatsapp(event)">
+          <input
+            id="nombre"
+            type="text"
+            placeholder="Tu nombre"
+            required
+            class="p-3 rounded shadow border focus:outline-yellow-500"
+          />
+          <input
+            id="correo"
+            type="email"
+            placeholder="Tu correo electrónico"
+            required
+            class="p-3 rounded shadow border focus:outline-yellow-500"
+          />
+          <select id="servicio" required class="p-3 rounded shadow border focus:outline-yellow-500">
+            <option value="Consulta veterinaria">Consulta veterinaria</option>
+            <option value="Afiliación">Afiliación</option>
+            <option value="Vacunación">Vacunación</option>
+            <option value="Baño y estética">Baño y estética</option>
+            <option value="Desparasitación">Desparasitación</option>
+            <option value="Cirugía">Cirugía</option>
+            <option value="Urgencias 24h">Urgencias 24h</option>
+          </select>
+          <textarea
+            id="mensaje"
+            placeholder="Tu mensaje"
+            required
+            class="p-3 rounded shadow border focus:outline-yellow-500"
+          ></textarea>
+          <button
+            type="submit"
+            class="bg-yellow-500 hover:bg-yellow-600 text-white py-3 px-6 rounded-full shadow transition transform hover:scale-105"
+          >
+            Enviar
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-10 text-center">
+      <ul class="flex justify-center space-x-6 text-2xl mb-4">
+        <li>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </li>
+      </ul>
+      <p class="text-sm">&copy; 2025 Whoof & Whiskers. Todos los derechos reservados.</p>
+    </footer>
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+
+    <script>
+      function enviarWhatsapp(event) {
+        event.preventDefault();
+
+        const nombre = document.getElementById('nombre').value;
+        const correo = document.getElementById('correo').value;
+        const servicio = document.getElementById('servicio').value;
+        const mensaje = document.getElementById('mensaje').value;
+
+        const numeroDestino = '51995296177';
+
+        const texto = `Hola, soy ${nombre}. Quisiera solicitar atención para mi mascota.%0A%0A📌 Servicio: ${servicio}%0A✉️ Correo: ${correo}%0A📝 Mensaje: ${mensaje}%0A%0AEspero su pronta respuesta. ¡Gracias!`;
+
+        const url = `https://wa.me/${numeroDestino}?text=${texto}`;
+        window.open(url, '_blank');
+
+        event.target.reset();
+      }
+    </script>
+
+    <script>
+      function abrirModal(imgSrc, texto) {
+        document.getElementById('modal-img').src = imgSrc;
+        document.getElementById('modal-text').textContent = texto;
+        document.getElementById('modal').classList.remove('hidden');
+        document.getElementById('modal').classList.add('flex');
+      }
+
+      function cerrarModal() {
+        document.getElementById('modal').classList.remove('flex');
+        document.getElementById('modal').classList.add('hidden');
+      }
+    </script>
+    <script>
+      function abrirModalServicio(titulo, descripcion, costo) {
+        document.getElementById('modalServicioTitulo').innerText = titulo;
+        document.getElementById(
+          'modalServicioDescripcion'
+        ).innerHTML = `${descripcion}<br><strong>Costo: ${costo}</strong>`;
+        document.getElementById('modalServicio').classList.remove('hidden');
+        document.getElementById('modalServicio').classList.add('flex');
+      }
+
+      function cerrarModalServicio() {
+        document.getElementById('modalServicio').classList.add('hidden');
+        document.getElementById('modalServicio').classList.remove('flex');
+      }
+    </script>
+    <!-- Modal -->
+    <div id="modal" class="fixed inset-0 z-50 bg-black bg-opacity-70 hidden items-center justify-center">
+      <div class="bg-white rounded-2xl shadow-xl w-[350px] h-[450px] relative flex flex-col items-center p-4">
+        <button
+          onclick="cerrarModal()"
+          class="absolute top-2 right-3 text-gray-500 hover:text-gray-700 text-2xl font-bold"
+        >
+          &times;
+        </button>
+
+        <!-- Imagen contenedora fija -->
+        <div class="w-full h-[240px] overflow-hidden rounded-lg mb-4">
+          <img id="modal-img" src="" alt="Detalle" class="w-full h-full object-cover" />
+        </div>
+
+        <!-- Texto -->
+        <p id="modal-text" class="text-gray-700 text-base text-center px-2"></p>
+      </div>
+    </div>
+    <!-- Modal de servicio -->
+    <div
+      id="modalServicio"
+      class="fixed inset-0 bg-black bg-opacity-60 hidden items-center justify-center z-50 backdrop-blur-sm"
+    >
+      <div class="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-lg text-center relative">
+        <button
+          onclick="cerrarModalServicio()"
+          class="absolute top-4 right-4 text-gray-400 hover:text-red-600 text-3xl font-semibold transition-colors"
+          aria-label="Cerrar modal"
+        >
+          &times;
+        </button>
+        <h3 id="modalServicioTitulo" class="text-3xl font-extrabold text-yellow-600 mb-6 tracking-wide"></h3>
+        <p id="modalServicioDescripcion" class="text-gray-700 text-lg leading-relaxed"></p>
+      </div>
+    </div>
+  </body>
+</html>
